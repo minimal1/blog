@@ -1,10 +1,13 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const season1 = await getCollection("season1")
 ---
 
 <Layout>
   Season1에 작성된 글들
+  <ul>
+    {season1.map(post => <li><a href={`/blog/season1/${post.data.id}`}>{post.data.title}</a></li>)}
+  </ul>
 </Layout>
