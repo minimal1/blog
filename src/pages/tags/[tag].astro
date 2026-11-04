@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import LogList from "../../components/LogList.astro";
+import { publishedLogs, sortProjects, withBase } from "../../lib/site";
+
+export const getStaticPaths = (async () => {
+  const logs = publishedLogs(await getCollection("logs"));
+  const tags = [...new Set(logs.flatMap((log) => log.data.tags))];
+
+  return tags.map((tag) => ({
+    params: { tag },
+    props: {
+      tag,
+      logs: logs.filter((log) => log.data.tags.includes(tag)),
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { tag, logs } = Astro.props;
+const projects = sortProjects(await getCollection("projects"));
+---
+
+<Layout title={`#${tag}`}>
+  <header class="page-intro">
+    <p class="eyebrow"><a href={withBase("/tags")}>Topics</a></p>
+    <h1 class="page-title">#{tag}</h1>
+    <p class="page-description">
+      서로 다른 프로젝트에서 ‘{tag}’에 관해 남긴 기록 {logs.length}개입니다.
+    </p>
+  </header>
+
+  <LogList logs={logs} projects={projects} />
+</Layout>
+
+<style>
+  .eyebrow a {
+    color: inherit;
+  }
+</style>

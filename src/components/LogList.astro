@@ -1,0 +1,116 @@
+---
+import type { LogEntry, ProjectEntry } from "../lib/site";
+import { formatDate, logKinds, logPath, projectPath } from "../lib/site";
+import TagList from "./TagList.astro";
+
+interface Props {
+  logs: LogEntry[];
+  projects: ProjectEntry[];
+  showProject?: boolean;
+}
+
+const { logs, projects, showProject = true } = Astro.props;
+const projectById = new Map(projects.map((project) => [project.id, project]));
+---
+
+<ol class="log-list">
+  {logs.map((log) => {
+    const project = projectById.get(log.data.project.id);
+
+    return (
+      <li>
+        <article class="log-entry">
+          <div class="log-entry__date">
+            <time datetime={log.data.publishedAt.toISOString()}>
+              {formatDate(log.data.publishedAt)}
+            </time>
+          </div>
+          <div class="log-entry__body">
+            <div class="log-entry__context">
+              {showProject && project && (
+                <a href={projectPath(project)}>{project.data.title}</a>
+              )}
+              <span>{logKinds[log.data.kind]}</span>
+            </div>
+            <h3><a href={logPath(log)}>{log.data.title}</a></h3>
+            <p>{log.data.description}</p>
+            {log.data.tags.length > 0 && <TagList tags={log.data.tags} />}
+          </div>
+        </article>
+      </li>
+    );
+  })}
+</ol>
+
+<style>
+  .log-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .log-list > li {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .log-entry {
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: clamp(1rem, 5vw, 4rem);
+    padding-block: 1.75rem;
+  }
+
+  .log-entry__date {
+    color: var(--text-soft);
+    font-family: "SFMono-Regular", Consolas, monospace;
+    font-size: 0.72rem;
+  }
+
+  .log-entry__context {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.45rem;
+    color: var(--text-soft);
+    font-size: 0.72rem;
+    font-weight: 650;
+  }
+
+  .log-entry__context a {
+    color: var(--accent-strong);
+    text-decoration: none;
+  }
+
+  .log-entry__context a::after {
+    margin-left: 0.5rem;
+    color: var(--line);
+    content: "/";
+  }
+
+  h3 {
+    margin: 0;
+    font-size: clamp(1.15rem, 3vw, 1.45rem);
+    letter-spacing: -0.035em;
+    line-height: 1.35;
+  }
+
+  h3 a {
+    text-decoration: none;
+  }
+
+  p {
+    max-width: 42rem;
+    margin: 0.55rem 0 1rem;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+
+  @media (max-width: 640px) {
+    .log-entry {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+</style>

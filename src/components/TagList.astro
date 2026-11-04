@@ -1,0 +1,26 @@
+---
+import { tagPath } from "../lib/site";
+
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+<ul class="tag-list" aria-label="태그 목록">
+  {tags.map((tag) => (
+    <li><a class="pill" href={tagPath(tag)}>#{tag}</a></li>
+  ))}
+</ul>
+
+<style>
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+</style>

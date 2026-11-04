@@ -1,0 +1,178 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import StatusBadge from "../../components/StatusBadge.astro";
+import MilestoneList from "../../components/MilestoneList.astro";
+import LogList from "../../components/LogList.astro";
+import {
+  formatDate,
+  logPath,
+  publishedLogs,
+  withBase,
+} from "../../lib/site";
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection("projects");
+
+  return projects.map((project) => ({
+    params: { project: project.id },
+    props: { project },
+  }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const allProjects = await getCollection("projects");
+const logs = publishedLogs(
+  (await getCollection("logs")).filter(
+    (log) => log.data.project.id === project.id,
+  ),
+);
+const { Content } = await render(project);
+---
+
+<Layout title={project.data.title} description={project.data.summary}>
+  <header class="project-hero">
+    <div class="project-hero__topline">
+      <a href={withBase("/projects")}>프로젝트</a>
+      <span aria-hidden="true">/</span>
+      <StatusBadge status={project.data.status} />
+    </div>
+    <h1>{project.data.title}</h1>
+    <p>{project.data.summary}</p>
+    <div class="project-hero__meta">
+      <span>{formatDate(project.data.startedAt)} 시작</span>
+      <span>기록 {logs.length}개</span>
+      <span>{formatDate(project.data.updatedAt)} 업데이트</span>
+    </div>
+    {project.data.links && (
+      <div class="project-hero__links">
+        {project.data.links.website && (
+          <a href={project.data.links.website} target="_blank" rel="noreferrer">
+            웹사이트 ↗
+          </a>
+        )}
+        {project.data.links.repository && (
+          <a href={project.data.links.repository} target="_blank" rel="noreferrer">
+            저장소 ↗
+          </a>
+        )}
+      </div>
+    )}
+  </header>
+
+  <section class="section" aria-labelledby="milestones-heading">
+    <div class="section-heading">
+      <h2 id="milestones-heading">이정표</h2>
+    </div>
+    <MilestoneList milestones={project.data.milestones} />
+  </section>
+
+  <section class="project-about" aria-labelledby="about-heading">
+    <div>
+      <p class="eyebrow">About the project</p>
+      <h2 id="about-heading">무엇을 만들고 있나</h2>
+    </div>
+    <div class="prose"><Content /></div>
+  </section>
+
+  <section class="section" aria-labelledby="project-logs-heading">
+    <div class="section-heading">
+      <h2 id="project-logs-heading">개발 기록</h2>
+      {logs.length > 0 && (
+        <a href={logPath(logs.at(-1)!)}>
+          처음부터 읽기
+        </a>
+      )}
+    </div>
+    <LogList logs={logs} projects={allProjects} showProject={false} />
+  </section>
+</Layout>
+
+<style>
+  .project-hero {
+    position: relative;
+    margin-block: 4.5rem 5rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid var(--line);
+    border-radius: calc(var(--radius) * 1.4);
+    background: var(--surface);
+  }
+
+  .project-hero__topline,
+  .project-hero__meta,
+  .project-hero__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 1.2rem;
+    color: var(--text-soft);
+    font-size: 0.78rem;
+  }
+
+  .project-hero__topline a {
+    color: var(--accent-strong);
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  h1 {
+    margin: 3.5rem 0 0.8rem;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    letter-spacing: -0.07em;
+    line-height: 1;
+  }
+
+  .project-hero > p {
+    max-width: 42rem;
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 1.1rem;
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+
+  .project-hero__meta {
+    margin-top: 3.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .project-hero__links {
+    margin-top: 0.8rem;
+  }
+
+  .project-hero__links a {
+    font-weight: 670;
+  }
+
+  .project-about {
+    display: grid;
+    grid-template-columns: minmax(12rem, 0.7fr) minmax(0, 1.3fr);
+    gap: clamp(2rem, 8vw, 7rem);
+    margin-block: 6rem;
+    padding-block: 4rem;
+    border-block: 1px solid var(--line);
+  }
+
+  .project-about h2 {
+    margin: 0;
+    font-size: 1.7rem;
+    letter-spacing: -0.04em;
+  }
+
+  .project-about .prose :global(p:first-child) {
+    margin-top: 0;
+  }
+
+  @media (max-width: 720px) {
+    .project-hero {
+      margin-block: 3rem 4rem;
+    }
+
+    .project-about {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+</style>

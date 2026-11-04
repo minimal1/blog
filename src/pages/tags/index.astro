@@ -1,0 +1,105 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { publishedLogs, tagPath } from "../../lib/site";
+
+const logs = publishedLogs(await getCollection("logs"));
+const tagCounts = new Map<string, number>();
+
+for (const log of logs) {
+  for (const tag of log.data.tags) {
+    tagCounts.set(tag, (tagCounts.get(tag) ?? 0) + 1);
+  }
+}
+
+const tags = [...tagCounts.entries()].sort(
+  ([tagA, countA], [tagB, countB]) => countB - countA || tagA.localeCompare(tagB, "ko"),
+);
+---
+
+<Layout title="태그">
+  <header class="page-intro">
+    <p class="eyebrow">Topics</p>
+    <h1 class="page-title">태그</h1>
+    <p class="page-description">
+      개발, 가격, 운영처럼 여러 프로젝트에서 반복해서 만난 문제를 주제별로 모았습니다.
+    </p>
+  </header>
+
+  <ul class="tag-cloud">
+    {tags.map(([tag, count]) => (
+      <li>
+        <a href={tagPath(tag)}>
+          <span>#{tag}</span>
+          <small>{count}개의 기록</small>
+        </a>
+      </li>
+    ))}
+  </ul>
+</Layout>
+
+<style>
+  .tag-cloud {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+  }
+
+  .tag-cloud li {
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .tag-cloud li:nth-child(3n) {
+    border-right: 0;
+  }
+
+  .tag-cloud a {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem;
+    text-decoration: none;
+  }
+
+  .tag-cloud a:hover {
+    background: var(--surface);
+  }
+
+  .tag-cloud span {
+    font-weight: 700;
+  }
+
+  .tag-cloud small {
+    color: var(--text-soft);
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 760px) {
+    .tag-cloud {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tag-cloud li:nth-child(3n) {
+      border-right: 1px solid var(--line);
+    }
+
+    .tag-cloud li:nth-child(2n) {
+      border-right: 0;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tag-cloud {
+      grid-template-columns: 1fr;
+    }
+
+    .tag-cloud li {
+      border-right: 0;
+    }
+  }
+</style>

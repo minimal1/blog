@@ -1,0 +1,240 @@
+:root {
+  color-scheme: light;
+  --background: #f7f6f2;
+  --surface: #ffffff;
+  --surface-muted: #efeee8;
+  --text: #20211f;
+  --text-soft: #65675f;
+  --line: #dcdad1;
+  --accent: #176c55;
+  --accent-soft: #dcece5;
+  --accent-strong: #0c4f3d;
+  --warm: #a0522d;
+  --content-width: 72rem;
+  --reading-width: 45rem;
+  --radius: 0.8rem;
+  font-family:
+    Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  font-synthesis: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--background);
+  color: var(--text);
+  font-size: 17px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  line-height: 1.7;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--accent-strong);
+  text-decoration-color: currentColor;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+.page-shell {
+  width: min(calc(100% - 2.5rem), var(--content-width));
+  margin-inline: auto;
+}
+
+.reading-shell {
+  width: min(calc(100% - 2.5rem), var(--reading-width));
+  margin-inline: auto;
+}
+
+.page-intro {
+  max-width: 48rem;
+  margin-block: 4.5rem 3.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.6rem;
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 750;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.page-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 780;
+  letter-spacing: -0.055em;
+  line-height: 1.08;
+  word-break: keep-all;
+}
+
+.page-description {
+  max-width: 41rem;
+  margin: 1.25rem 0 0;
+  color: var(--text-soft);
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  line-height: 1.75;
+  word-break: keep-all;
+}
+
+.section {
+  margin-block: 4rem;
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.section-heading h2 {
+  margin: 0;
+  font-size: 1.15rem;
+  letter-spacing: -0.02em;
+}
+
+.section-heading a {
+  color: var(--text-soft);
+  font-size: 0.84rem;
+}
+
+.muted {
+  color: var(--text-soft);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  min-height: 1.65rem;
+  padding: 0.12rem 0.58rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-soft);
+  font-size: 0.74rem;
+  font-weight: 680;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.pill:hover {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.prose {
+  color: #292a27;
+  font-size: 1.02rem;
+  line-height: 1.85;
+  word-break: keep-all;
+}
+
+.prose :where(h2, h3) {
+  color: var(--text);
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+
+.prose h2 {
+  margin: 3.4rem 0 1rem;
+  font-size: 1.65rem;
+}
+
+.prose h3 {
+  margin: 2.6rem 0 0.8rem;
+  font-size: 1.25rem;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote {
+  margin-block: 1.25rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.4rem;
+}
+
+.prose li + li {
+  margin-top: 0.45rem;
+}
+
+.prose blockquote {
+  margin-inline: 0;
+  padding: 0.7rem 1.1rem;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  color: #31433c;
+}
+
+.prose code {
+  padding: 0.15em 0.35em;
+  border-radius: 0.3rem;
+  background: var(--surface-muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.88em;
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: 1.1rem;
+  border-radius: var(--radius);
+  background: #222622;
+  color: #f4f6f1;
+}
+
+.prose pre code {
+  padding: 0;
+  background: transparent;
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+
+  .page-shell,
+  .reading-shell {
+    width: min(calc(100% - 2rem), var(--content-width));
+  }
+
+  .page-intro {
+    margin-block: 3.25rem 2.75rem;
+  }
+
+  .section {
+    margin-block: 3rem;
+  }
+}

@@ -1,0 +1,21 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import LogList from "../../components/LogList.astro";
+import { publishedLogs, sortProjects } from "../../lib/site";
+
+const projects = sortProjects(await getCollection("projects"));
+const logs = publishedLogs(await getCollection("logs"));
+---
+
+<Layout title="모든 기록">
+  <header class="page-intro">
+    <p class="eyebrow">All logs</p>
+    <h1 class="page-title">모든 기록</h1>
+    <p class="page-description">
+      프로젝트 경계를 넘어서 가장 최근에 내린 결정과 개발 과정을 시간순으로 봅니다.
+    </p>
+  </header>
+
+  <LogList logs={logs} projects={projects} />
+</Layout>

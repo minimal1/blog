@@ -1,0 +1,50 @@
+---
+import { projectStatuses } from "../lib/site";
+
+interface Props {
+  status: keyof typeof projectStatuses;
+}
+
+const { status } = Astro.props;
+const statusMeta = projectStatuses[status];
+---
+
+<span class:list={["status", `status--${statusMeta.tone}`]}>
+  <span class="status__dot" aria-hidden="true"></span>
+  {statusMeta.label}
+</span>
+
+<style>
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    width: fit-content;
+    color: var(--text-soft);
+    font-size: 0.72rem;
+    font-weight: 720;
+    white-space: nowrap;
+  }
+
+  .status__dot {
+    width: 0.48rem;
+    height: 0.48rem;
+    border-radius: 50%;
+    background: var(--text-soft);
+  }
+
+  .status--active .status__dot {
+    background: #13845f;
+    box-shadow: 0 0 0 0.2rem #d9eee6;
+  }
+
+  .status--testing .status__dot {
+    background: #c16b2f;
+    box-shadow: 0 0 0 0.2rem #f4e6d9;
+  }
+
+  .status--steady .status__dot {
+    background: #5072a7;
+    box-shadow: 0 0 0 0.2rem #e0e7f2;
+  }
+</style>

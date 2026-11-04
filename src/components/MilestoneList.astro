@@ -1,0 +1,114 @@
+---
+interface Milestone {
+  label: string;
+  state: "done" | "current" | "upcoming";
+}
+
+interface Props {
+  milestones: Milestone[];
+}
+
+const { milestones } = Astro.props;
+const symbols = { done: "✓", current: "●", upcoming: "○" } as const;
+---
+
+<ol class="milestones">
+  {milestones.map((milestone) => (
+    <li class:list={[`milestones__item--${milestone.state}`]}>
+      <span class="milestones__symbol" aria-hidden="true">{symbols[milestone.state]}</span>
+      <span>{milestone.label}</span>
+      {milestone.state === "current" && <small>현재</small>}
+    </li>
+  ))}
+</ol>
+
+<style>
+  .milestones {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    list-style: none;
+  }
+
+  .milestones li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 0.65rem;
+    min-height: 7rem;
+    padding: 1.15rem;
+    border-right: 1px solid var(--line);
+    color: var(--text-soft);
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .milestones li:last-child {
+    border-right: 0;
+  }
+
+  .milestones__symbol {
+    color: #999b93;
+    font-family: monospace;
+    font-weight: 800;
+  }
+
+  .milestones__item--done .milestones__symbol,
+  .milestones__item--current .milestones__symbol {
+    color: var(--accent);
+  }
+
+  .milestones__item--current {
+    background: var(--accent-soft);
+    color: var(--text);
+  }
+
+  small {
+    grid-column: 2;
+    width: fit-content;
+    padding: 0.08rem 0.4rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: white;
+    font-size: 0.62rem;
+    font-weight: 700;
+  }
+
+  @media (max-width: 760px) {
+    .milestones {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .milestones li:nth-child(2) {
+      border-right: 0;
+    }
+
+    .milestones li:nth-child(-n + 2) {
+      border-bottom: 1px solid var(--line);
+    }
+  }
+
+  @media (max-width: 460px) {
+    .milestones {
+      grid-template-columns: 1fr;
+    }
+
+    .milestones li {
+      min-height: auto;
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .milestones li:nth-child(3) {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .milestones li:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>

@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import { publishedLogs, sortProjects } from "../../lib/site";
+
+const projects = sortProjects(await getCollection("projects"));
+const logs = publishedLogs(await getCollection("logs"));
+---
+
+<Layout title="프로젝트">
+  <header class="page-intro">
+    <p class="eyebrow">Projects</p>
+    <h1 class="page-title">프로젝트</h1>
+    <p class="page-description">
+      만들고 있는 제품마다 문제, 현재 상태, 이정표와 모든 기록을 한곳에 모았습니다.
+      처음부터 읽으면 한 프로젝트가 변해 온 순서를 볼 수 있습니다.
+    </p>
+  </header>
+
+  <div class="project-grid">
+    {projects.map((project) => (
+      <ProjectCard
+        project={project}
+        logCount={logs.filter((log) => log.data.project.id === project.id).length}
+      />
+    ))}
+  </div>
+</Layout>
+
+<style>
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  @media (max-width: 720px) {
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

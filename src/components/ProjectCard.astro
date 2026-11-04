@@ -1,0 +1,92 @@
+---
+import type { ProjectEntry } from "../lib/site";
+import { formatDate, projectPath } from "../lib/site";
+import StatusBadge from "./StatusBadge.astro";
+
+interface Props {
+  project: ProjectEntry;
+  logCount?: number;
+}
+
+const { project, logCount = 0 } = Astro.props;
+---
+
+<article class="project-card">
+  <div class="project-card__meta">
+    <StatusBadge status={project.data.status} />
+    <span>{formatDate(project.data.updatedAt)} 업데이트</span>
+  </div>
+  <div class="project-card__body">
+    <h3><a href={projectPath(project)}>{project.data.title}</a></h3>
+    <p>{project.data.summary}</p>
+  </div>
+  <div class="project-card__footer">
+    <span>기록 {logCount}개</span>
+    <a href={projectPath(project)} aria-label={`${project.data.title} 프로젝트 보기`}>
+      프로젝트 보기 <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 18rem;
+    padding: 1.4rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    transition: transform 160ms ease, border-color 160ms ease;
+  }
+
+  .project-card:hover {
+    border-color: #b8b9b1;
+    transform: translateY(-2px);
+  }
+
+  .project-card__meta,
+  .project-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--text-soft);
+    font-size: 0.72rem;
+  }
+
+  .project-card__body {
+    margin-block: auto;
+    padding-block: 2.5rem;
+  }
+
+  h3 {
+    margin: 0 0 0.7rem;
+    font-size: 1.55rem;
+    letter-spacing: -0.04em;
+    line-height: 1.25;
+  }
+
+  h3 a {
+    text-decoration: none;
+  }
+
+  p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 0.94rem;
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+
+  .project-card__footer {
+    padding-top: 1rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .project-card__footer a {
+    color: var(--accent-strong);
+    font-weight: 680;
+    text-decoration: none;
+  }
+</style>

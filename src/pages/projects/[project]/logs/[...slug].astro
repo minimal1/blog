@@ -1,0 +1,260 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, getEntry, render } from "astro:content";
+import Layout from "../../../../layouts/Layout.astro";
+import StatusBadge from "../../../../components/StatusBadge.astro";
+import TagList from "../../../../components/TagList.astro";
+import {
+  formatDate,
+  logKinds,
+  logPath,
+  projectPath,
+  publishedLogs,
+} from "../../../../lib/site";
+
+export const getStaticPaths = (async () => {
+  const logs = publishedLogs(await getCollection("logs"));
+
+  return logs.map((log) => ({
+    params: {
+      project: log.data.project.id,
+      slug: log.id.split("/").at(-1),
+    },
+    props: { log },
+  }));
+}) satisfies GetStaticPaths;
+
+const { log } = Astro.props;
+const project = await getEntry(log.data.project);
+
+if (!project) {
+  throw new Error(`프로젝트를 찾을 수 없습니다: ${log.data.project.id}`);
+}
+
+const projectLogs = publishedLogs(
+  (await getCollection("logs")).filter(
+    (entry) => entry.data.project.id === project.id,
+  ),
+);
+const currentIndex = projectLogs.findIndex((entry) => entry.id === log.id);
+const newerLog = currentIndex > 0 ? projectLogs[currentIndex - 1] : undefined;
+const olderLog =
+  currentIndex < projectLogs.length - 1 ? projectLogs[currentIndex + 1] : undefined;
+const { Content } = await render(log);
+---
+
+<Layout title={log.data.title} description={log.data.description} width="reading">
+  <header class="article-header">
+    <div class="article-header__context">
+      <a href={projectPath(project)}>{project.data.title}</a>
+      <span aria-hidden="true">/</span>
+      <span>{logKinds[log.data.kind]}</span>
+    </div>
+    <h1>{log.data.title}</h1>
+    <p>{log.data.description}</p>
+    <div class="article-header__meta">
+      <time datetime={log.data.publishedAt.toISOString()}>
+        {formatDate(log.data.publishedAt)}
+      </time>
+      <span>기록 {projectLogs.length}개 중 {projectLogs.length - currentIndex}번째</span>
+    </div>
+  </header>
+
+  <aside class="project-context" aria-label="프로젝트 정보">
+    <div>
+      <span class="project-context__label">이 기록이 속한 프로젝트</span>
+      <a href={projectPath(project)}>{project.data.title}</a>
+    </div>
+    <StatusBadge status={project.data.status} />
+  </aside>
+
+  <article class="prose article-body">
+    <Content />
+  </article>
+
+  {log.data.tags.length > 0 && (
+    <div class="article-tags">
+      <span>이 기록의 주제</span>
+      <TagList tags={log.data.tags} />
+    </div>
+  )}
+
+  <nav class="article-navigation" aria-label="프로젝트 기록 이동">
+    {olderLog ? (
+      <a href={logPath(olderLog)} rel="prev">
+        <small>이전 기록</small>
+        <strong>{olderLog.data.title}</strong>
+      </a>
+    ) : <span></span>}
+    {newerLog ? (
+      <a class="article-navigation__next" href={logPath(newerLog)} rel="next">
+        <small>다음 기록</small>
+        <strong>{newerLog.data.title}</strong>
+      </a>
+    ) : <span></span>}
+  </nav>
+
+  <a class="back-to-project" href={projectPath(project)}>
+    {project.data.title}의 전체 기록 보기 <span aria-hidden="true">→</span>
+  </a>
+</Layout>
+
+<style>
+  .article-header {
+    margin-block: 5rem 3rem;
+  }
+
+  .article-header__context,
+  .article-header__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.8rem;
+    color: var(--text-soft);
+    font-size: 0.76rem;
+  }
+
+  .article-header__context a {
+    color: var(--accent-strong);
+    font-weight: 720;
+    text-decoration: none;
+  }
+
+  h1 {
+    margin: 1.1rem 0;
+    font-size: clamp(2.5rem, 8vw, 4.8rem);
+    letter-spacing: -0.065em;
+    line-height: 1.08;
+    word-break: keep-all;
+  }
+
+  .article-header > p {
+    margin: 0;
+    color: var(--text-soft);
+    font-size: 1.08rem;
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+
+  .article-header__meta {
+    margin-top: 2rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .project-context {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+    padding: 1rem 1.15rem;
+    border: 1px solid #c7ddd4;
+    border-radius: var(--radius);
+    background: var(--accent-soft);
+  }
+
+  .project-context > div {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .project-context__label {
+    color: var(--text-soft);
+    font-size: 0.68rem;
+  }
+
+  .project-context a {
+    color: var(--accent-strong);
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .article-body {
+    min-height: 20rem;
+  }
+
+  .article-tags {
+    display: grid;
+    gap: 0.7rem;
+    margin-top: 4rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .article-tags > span {
+    color: var(--text-soft);
+    font-size: 0.72rem;
+  }
+
+  .article-navigation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 5rem;
+  }
+
+  .article-navigation a {
+    display: grid;
+    align-content: center;
+    min-height: 8rem;
+    padding: 1.1rem;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--surface);
+    text-decoration: none;
+  }
+
+  .article-navigation a:hover {
+    border-color: var(--accent);
+  }
+
+  .article-navigation small {
+    margin-bottom: 0.45rem;
+    color: var(--text-soft);
+    font-size: 0.68rem;
+  }
+
+  .article-navigation strong {
+    font-size: 0.96rem;
+    line-height: 1.45;
+    word-break: keep-all;
+  }
+
+  .article-navigation__next {
+    text-align: right;
+  }
+
+  .back-to-project {
+    display: block;
+    margin-top: 1rem;
+    padding: 1rem;
+    color: var(--accent-strong);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  @media (max-width: 560px) {
+    .article-header {
+      margin-block: 3.5rem 2.5rem;
+    }
+
+    .project-context {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .article-navigation {
+      grid-template-columns: 1fr;
+    }
+
+    .article-navigation > span {
+      display: none;
+    }
+
+    .article-navigation__next {
+      text-align: left;
+    }
+  }
+</style>
