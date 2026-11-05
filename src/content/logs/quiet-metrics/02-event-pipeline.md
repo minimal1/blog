@@ -19,6 +19,20 @@ tags: ["개발", "아키텍처", "운영"]
 
 처리량보다 중요한 것은 실패를 숨기지 않는 것입니다. 거절된 이벤트 수와 집계 지연 시간을 함께 남겨, 데이터가 조용히 사라지는 상황을 확인할 수 있게 했습니다.
 
+```ts
+type EventPayload = {
+  name: string;
+  occurredAt: Date;
+  properties: Record<string, string | number>;
+};
+
+export function acceptEvent(event: EventPayload) {
+  const isRecent = Date.now() - event.occurredAt.getTime() < 60_000;
+
+  return isRecent && event.name.length > 0;
+}
+```
+
 ## 나중으로 미룬 것
 
 재시도 큐와 지역별 수집 서버는 구현하지 않았습니다. 실제 병목을 확인한 뒤 추가해도 늦지 않습니다. 지금의 목표는 확장 가능한 그림이 아니라, 이해하고 고칠 수 있는 작은 시스템입니다.

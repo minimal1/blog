@@ -1,5 +1,6 @@
 ---
 import { withBase } from "../lib/site";
+import ThemeToggle from "./ThemeToggle.astro";
 
 interface Props {
   currentPath: string;
@@ -20,23 +21,26 @@ const navigation = [
       <span class="brand__mark" aria-hidden="true"></span>
       <span>MINIMAL.LOG</span>
     </a>
-    <nav aria-label="주요 탐색">
-      {navigation.map((item) => (
-        <a
-          href={item.href}
-          aria-current={currentPath.startsWith(item.href) ? "page" : undefined}
-        >
-          {item.label}
-        </a>
-      ))}
-    </nav>
+    <div class="site-header__actions">
+      <nav aria-label="주요 탐색">
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            aria-current={currentPath.startsWith(item.href) ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+      <ThemeToggle />
+    </div>
   </div>
 </header>
 
 <style>
   .site-header {
     border-bottom: 1px solid var(--line);
-    background: color-mix(in srgb, var(--background) 92%, transparent);
+    background: var(--background);
   }
 
   .site-header__inner {
@@ -72,6 +76,12 @@ const navigation = [
     gap: clamp(0.8rem, 3vw, 1.7rem);
   }
 
+  .site-header__actions {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 3vw, 1.5rem);
+  }
+
   nav a {
     color: var(--text-soft);
     font-size: 0.82rem;
@@ -100,8 +110,12 @@ const navigation = [
     }
 
     nav {
+      justify-content: flex-start;
+      flex: 1;
+    }
+
+    .site-header__actions {
       width: 100%;
-      justify-content: space-between;
     }
   }
 </style>

@@ -24,6 +24,27 @@ const pageTitle = title ? `${title} · 미니멀의 빌드 로그` : "미니멀�
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
+    <script is:inline>
+      (() => {
+        try {
+          const savedTheme = localStorage.getItem("theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const theme = savedTheme === "light" || savedTheme === "dark"
+            ? savedTheme
+            : prefersDark ? "dark" : "light";
+
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.style.colorScheme = theme;
+          document.querySelector('meta[name="theme-color"]')?.setAttribute(
+            "content",
+            theme === "dark" ? "#09090b" : "#ffffff",
+          );
+        } catch {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
     <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
     <title>{pageTitle}</title>
   </head>

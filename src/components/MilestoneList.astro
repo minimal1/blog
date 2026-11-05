@@ -52,7 +52,7 @@ const symbols = { done: "✓", current: "●", upcoming: "○" } as const;
   }
 
   .milestones__symbol {
-    color: #999b93;
+    color: var(--text-faint);
     font-family: monospace;
     font-weight: 800;
   }
@@ -73,7 +73,7 @@ const symbols = { done: "✓", current: "●", upcoming: "○" } as const;
     padding: 0.08rem 0.4rem;
     border-radius: 999px;
     background: var(--accent);
-    color: white;
+    color: var(--on-accent);
     font-size: 0.62rem;
     font-weight: 700;
   }
