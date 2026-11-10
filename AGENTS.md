@@ -10,6 +10,11 @@ Manage the background server with `astro dev stop`, `astro dev status`, and `ast
 
 ## Documentation
 
+Before creating or editing a project or development log, read and follow both
+[`CONTENT_GUIDE.md`](./CONTENT_GUIDE.md) and
+[`WRITING_STYLE.md`](./WRITING_STYLE.md). They are the sources of truth for
+content structure, publication state, prose, revision, and validation.
+
 Full documentation: https://docs.astro.build
 
 Consult these guides before working on related tasks:
