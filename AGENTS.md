@@ -15,6 +15,10 @@ Before creating or editing a project or development log, read and follow both
 [`WRITING_STYLE.md`](./WRITING_STYLE.md). They are the sources of truth for
 content structure, publication state, prose, revision, and validation.
 
+When two or more projects are being written concurrently, also read and follow
+[`WORKTREE_GUIDE.md`](./WORKTREE_GUIDE.md). Never let two sessions edit the same
+worktree.
+
 Full documentation: https://docs.astro.build
 
 Consult these guides before working on related tasks:
