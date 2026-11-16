@@ -5,7 +5,7 @@ publishedAt: 2026-11-16
 project: "acp-harbor"
 kind: "decision"
 tags: ["게임개발", "의사결정"]
-draft: true
+draft: false
 ---
 
 1인 개발로 게임 영역에 관심이 생겼다. 게임을 만들려면 무엇을 만들지 정해야 한다. 그런데 게임 아이디어가 없었다. 세계관, 캐릭터, 스토리를 처음부터 만드는 작업이 1인 개발에서는 가장 큰 비용이었다.
