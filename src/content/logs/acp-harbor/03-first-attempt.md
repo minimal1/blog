@@ -1,11 +1,11 @@
 ---
 title: "첫 시도는 동작했지만 에셋과 필드가 아쉬웠다"
 description: "agent-sprite-forge로 에셋을 만들고 Godot으로 이동과 건물과 포탈과 정책까지 구현한 첫 시도의 결과와 남은 과제"
-publishedAt: 2026-11-16
+publishedAt: 2026-11-17
 project: "acp-harbor"
 kind: "build"
 tags: ["게임개발", "에셋"]
-draft: true
+draft: false
 ---
 
 설계한 구조를 실제로 만들었다. 캐릭터와 건물과 맵 에셋은 agent-sprite-forge로 만들었다. 에셋을 전부 AI에게 맡기기로 한 계획의 첫 실행이었다.

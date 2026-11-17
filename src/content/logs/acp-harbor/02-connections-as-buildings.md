@@ -1,11 +1,11 @@
 ---
 title: "DB 커넥션을 건물 하나로 만들기로 했다"
 description: "DAC 관리의 핵심 기능을 건물과 포탈과 컨베이어 벨트와 출입 관리 대장으로 옮긴 게임 메커니즘 설계"
-publishedAt: 2026-11-16
+publishedAt: 2026-11-17
 project: "acp-harbor"
 kind: "decision"
 tags: ["게임개발", "의사결정"]
-draft: true
+draft: false
 ---
 
 스타듀밸리를 재밌게 플레이했다. 그래서 만들 게임도 그 형태를 따라갔다. 캐릭터가 필드를 움직이고, 행동을 수행하고, 그 행동으로 DAC 관리를 하는 게임을 상상했다.

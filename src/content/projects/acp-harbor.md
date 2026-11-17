@@ -3,15 +3,15 @@ title: "ACP Harbor"
 summary: "QueryPie ACP의 DAC 관리자 기능을 스타듀밸리 같은 2D 게임으로 옮겨 보는 개발자의 재미 프로젝트"
 status: "building"
 startedAt: 2026-11-16
-updatedAt: 2026-11-16
+updatedAt: 2026-11-17
 order: 2
 milestones:
   - label: "게임화 방향 정의"
-    state: "current"
+    state: "done"
   - label: "Godot 프로토타입"
-    state: "upcoming"
+    state: "done"
   - label: "제품 기능을 게임 메커니즘으로"
-    state: "upcoming"
+    state: "current"
   - label: "첫 플레이 가능한 빌드"
     state: "upcoming"
 ---
