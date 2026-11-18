@@ -9,13 +9,17 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check:content": "node scripts/check-content.mjs",
+    "test:content": "node --test tests/content-seo.test.mjs"
   },
   "dependencies": {
     "astro": "^7.3.8",
     "sharp": "^0.35.5"
   },
   "devDependencies": {
-    "typescript": "~6.0.3"
+    "mdast-util-from-markdown": "^2.1.0",
+    "typescript": "~6.0.3",
+    "yaml": "^2.9.1"
   }
 }
