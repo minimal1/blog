@@ -5,7 +5,7 @@ publishedAt: 2026-11-18
 project: "acp-harbor"
 kind: "decision"
 tags: ["게임개발", "의사결정"]
-draft: true
+draft: false
 ---
 
 첫 시도에서 놓친 것을 돌아봤다. 에셋과 화면에 힘을 쏟는 동안, 정작 재미는 검증하지 않았다. 게임 개발이 어떤 방식으로 이루어지는지도 몰랐다.
