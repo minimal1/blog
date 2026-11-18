@@ -4,6 +4,7 @@ import { getCollection, getEntry, render } from "astro:content";
 import Layout from "../../../../layouts/Layout.astro";
 import StatusBadge from "../../../../components/StatusBadge.astro";
 import TagList from "../../../../components/TagList.astro";
+import ArticleStructuredData from "../../../../components/ArticleStructuredData.astro";
 import {
   formatDate,
   logKinds,
@@ -44,6 +45,7 @@ const { Content } = await render(log);
 ---
 
 <Layout title={log.data.title} description={log.data.description} width="reading">
+  <ArticleStructuredData log={log} project={project} />
   <header class="article-header">
     <div class="article-header__context">
       <a href={projectPath(project)}>{project.data.title}</a>
