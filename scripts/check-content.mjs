@@ -63,6 +63,8 @@ export function reviewContent(files) {
       }
     }
 
+    // CommonMark cannot distinguish MDX JavaScript strings from rendered headings.
+    if (file.path.endsWith(".mdx")) continue;
     const body = file.source.slice(frontmatter[0].length);
     const bodyLine = lineAt(file.source, frontmatter[0].length);
     const visit = (node) => {

@@ -88,6 +88,21 @@ test("detects ATX and setext body H1 headings without flagging code examples", (
   assert.equal(issues[0].line, 7);
 });
 
+test("does not interpret H1-like lines in MDX JavaScript exports as headings", () => {
+  const file = log("01-mdx", "", "export const example = `\n# 문자열 내용\n`;\n\n## 본문 소제목");
+  file.path = file.path.replace(/\.md$/, ".mdx");
+  assert.deepEqual(reviewContent([file]).issues, []);
+});
+
+test("keeps metadata validation for MDX files", () => {
+  const file = log("01-mdx");
+  file.path = file.path.replace(/\.md$/, ".mdx");
+  file.source = file.source.replace('title: "01-mdx"', 'title: " "');
+  const { issues } = reviewContent([file]);
+  assert.equal(issues.length, 1);
+  assert.match(issues[0].message, /title/);
+});
+
 test("excludes legacy season1 content from the authored-content policy", () => {
   assert.deepEqual(reviewContent([
     { path: "src/posts/season1/old.md", source: "# Frontmatter 없는 이전 글" },
