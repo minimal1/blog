@@ -75,6 +75,8 @@ src/content/
 
 새 로그에는 먼저 `draft: true`를 명시한다. 내용과 로컬 미리보기를 확인한 뒤 공개 요청이 명확할 때만 `draft: false`로 바꾸거나 필드를 제거한다.
 
+`WRITING_STYLE.md`의 세 차례 퇴고를 마친 뒤 [콘텐츠 SEO 검토 skill](./.agents/skills/content-seo-review/SKILL.md)을 수행한다. 제목·요약과 본문의 일치, 사실의 출처와 불확실성 등을 항목별 판정과 `파일:줄` 근거로 대화나 작성 권한이 있는 PR 본문에 남긴다. 핵심 사실이 부족하면 사용자에게 확인하고 새 발행을 보류한다. 이 검토는 공개 요청을 대신하지 않는다.
+
 ## 프로젝트 작성 규칙
 
 위치: `src/content/projects/<project-id>.md`
@@ -225,10 +227,15 @@ Frontmatter 다음에 `WRITING_STYLE.md`에 따라 개발 기록 본문을 작�
 콘텐츠를 작성한 뒤 저장소 루트에서 다음을 실행한다.
 
 ```sh
+pnpm check:content
 pnpm build
 pnpm exec tsc --noEmit
+node --experimental-strip-types --test --test-concurrency=1 tests/*.test.mjs
+pnpm check:content --built
 git diff --check
 ```
+
+검사 범위와 한계, PR CI 및 Search Console 운영 절차는 [`docs/seo-workflow.md`](./docs/seo-workflow.md)를 따른다. 정적 검사 통과만으로 사실성이나 AI 검토 품질을 확인할 수는 없다.
 
 로컬 화면을 확인할 때는 프로젝트 규칙에 따라 백그라운드 서버를 사용한다.
 
@@ -251,6 +258,9 @@ http://localhost:4321/blog/tags/
 
 사실, 사고, 제목, 본문과 문장에 대한 검토는 `WRITING_STYLE.md`의 최종 체크리스트에서 수행한다.
 
+- [ ] 세 차례 퇴고 뒤 콘텐츠 SEO 검토 skill의 모든 항목에 판정과 근거를 남겼다.
+- [ ] `revise`와 `needs-facts`를 해결했으며, 새 공개라면 사용자의 명확한 공개 요청을 확인했다.
+
 ### 구조와 메타데이터
 
 - [ ] 경로와 파일명이 kebab-case 및 순번 규칙을 따른다.
@@ -262,8 +272,10 @@ http://localhost:4321/blog/tags/
 
 ### 검증
 
+- [ ] `pnpm check:content`와 빌드 후 `pnpm check:content --built`가 성공한다.
 - [ ] `pnpm build`가 성공한다.
 - [ ] `pnpm exec tsc --noEmit`가 성공한다.
+- [ ] `tests/*.test.mjs`의 회귀 테스트가 성공한다.
 - [ ] `git diff --check`가 성공한다.
 - [ ] 홈, 프로젝트, 글, 태그 페이지의 데스크톱과 모바일 표시를 확인했다.
 - [ ] 사용자가 요청하지 않은 코드나 스타일 변경이 섞이지 않았다.
