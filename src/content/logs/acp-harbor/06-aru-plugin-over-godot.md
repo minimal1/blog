@@ -5,7 +5,7 @@ publishedAt: 2026-11-18
 project: "acp-harbor"
 kind: "decision"
 tags: ["게임개발", "의사결정"]
-draft: true
+draft: false
 ---
 
 개념과 작업 방식이 정해졌으니 이제 만드는 일만 남았다. 그런데 만들어야 할 것 중에 게임 엔진 밖의 문제가 하나 있었다. 작업자인 AI 에이전트를 무엇으로 구동할 것인가다. 별도의 LLM 클라이언트가 필요했다.
