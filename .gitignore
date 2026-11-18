@@ -1,6 +1,10 @@
 # build output
 dist/
 
+# local Lighthouse scratch data and filesystem reports
+.lighthouseci/
+reports/performance/
+
 # generated types
 .astro/
 
