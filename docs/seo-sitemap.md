@@ -21,7 +21,7 @@ Google Search Console에서 `https://minimal1.github.io/blog/`를 URL 접두어 
 ## 검증
 
 ```sh
-pnpm test:seo-sitemap
+node --test tests/seo-sitemap.test.mjs
 pnpm build
 pnpm exec tsc --noEmit
 git diff --check
