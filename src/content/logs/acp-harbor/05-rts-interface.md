@@ -1,7 +1,7 @@
 ---
 title: "스타크래프트 인터페이스를 따오기로 했다"
 description: "캐릭터 직접 조작 대신 마우스와 일괄 선택과 AI 에이전트 작업자로 구성된 스타크래프트식 인터페이스로 방향을 바꾼 결정"
-publishedAt: 2026-11-18
+publishedAt: 2026-11-18T10:55:00+09:00
 project: "acp-harbor"
 kind: "decision"
 tags: ["게임개발", "의사결정"]

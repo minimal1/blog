@@ -1,7 +1,7 @@
 ---
 title: "댓글을 없애고 담소를 남겼다"
 description: "삽질 공유의 부담을 줄이기 위해 익명 스레드 연재를 택하고, 댓글 대신 담소 요청을 남긴 결정"
-publishedAt: 2026-11-12
+publishedAt: 2026-11-16T18:41:00+09:00
 project: "wailing-wall"
 kind: "decision"
 tags: ["커뮤니티", "익명성"]

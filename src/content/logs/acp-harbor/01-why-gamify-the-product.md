@@ -1,7 +1,7 @@
 ---
 title: "게임 아이디어가 없어서 회사 제품을 게임화하기로 했다"
 description: "새 게임 기획 대신 QueryPie ACP의 DAC 관리자 기능을 재료로 삼기로 한 결정과 그 근거"
-publishedAt: 2026-11-16
+publishedAt: 2026-11-16T18:39:00+09:00
 project: "acp-harbor"
 kind: "decision"
 tags: ["게임개발", "의사결정"]
