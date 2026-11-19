@@ -9,6 +9,7 @@ const season1 = defineCollection({
   }),
   schema: z.object({
     title: z.string(),
+    description: z.string().optional(),
   }),
 });
 

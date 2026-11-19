@@ -18,6 +18,9 @@ const { Content} = await render(post);
 
 ---
 
-<Layout>
+<Layout
+  title={post.data.title}
+  description={post.data.description ?? `${post.data.title} — 이전 블로그의 기록입니다.`}
+>
   <Content />
 </Layout>

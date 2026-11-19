@@ -8,7 +8,10 @@ const projects = sortProjects(await getCollection("projects"));
 const logs = publishedLogs(await getCollection("logs"));
 ---
 
-<Layout title="프로젝트">
+<Layout
+  title="프로젝트"
+  description="만들고 있는 제품마다 문제, 현재 상태, 이정표와 모든 기록을 한곳에 모았습니다. 처음부터 읽으면 한 프로젝트가 변해 온 순서를 볼 수 있습니다."
+>
   <header class="page-intro">
     <p class="eyebrow">Projects</p>
     <h1 class="page-title">프로젝트</h1>

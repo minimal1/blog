@@ -22,7 +22,10 @@ const { tag, logs } = Astro.props;
 const projects = sortProjects(await getCollection("projects"));
 ---
 
-<Layout title={`#${tag}`}>
+<Layout
+  title={`#${tag}`}
+  description={`서로 다른 프로젝트에서 ‘${tag}’에 관해 남긴 기록 ${logs.length}개입니다.`}
+>
   <header class="page-intro">
     <p class="eyebrow"><a href={withBase("/tags")}>Topics</a></p>
     <h1 class="page-title">#{tag}</h1>

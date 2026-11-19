@@ -5,7 +5,10 @@ import Layout from '../layouts/Layout.astro';
 const season1 = await getCollection("season1")
 ---
 
-<Layout>
+<Layout
+  title="이전 블로그 기록"
+  description="Season1에 작성한 이전 블로그의 글을 모았습니다."
+>
   Season1에 작성된 글들
   <ul>
     {season1.map(post => <li><a href={`/blog/season1/${post.id}`}>{post.data.title}</a></li>)}
