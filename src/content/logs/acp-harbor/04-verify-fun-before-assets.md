@@ -1,7 +1,7 @@
 ---
 title: "에셋보다 재미 검증이 먼저다"
 description: "유튜브와 검색으로 익힌 게임 개발 방식. 사각형으로 재미를 먼저 검증하고, 검증된 부분에만 에셋을 붙이는 순서를 정했다"
-publishedAt: 2026-11-18
+publishedAt: 2026-11-18T10:55:00+09:00
 project: "acp-harbor"
 kind: "decision"
 tags: ["게임개발", "의사결정"]

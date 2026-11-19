@@ -1,7 +1,7 @@
 ---
 title: "Godot을 버리고 Aru 플러그인으로 간다"
 description: "AI 에이전트 구동을 위해 Aru 플러그인을 택하면서 Godot을 버리게 된 결정과, 웹에서 10만개 맵을 검증해 Phaser를 선택한 과정"
-publishedAt: 2026-11-18
+publishedAt: 2026-11-19T00:05:00+09:00
 project: "acp-harbor"
 kind: "decision"
 tags: ["게임개발", "의사결정"]

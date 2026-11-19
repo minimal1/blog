@@ -1,7 +1,7 @@
 ---
 title: "DB 커넥션을 건물 하나로 만들기로 했다"
 description: "DAC 관리의 핵심 기능을 건물과 포탈과 컨베이어 벨트와 출입 관리 대장으로 옮긴 게임 메커니즘 설계"
-publishedAt: 2026-11-17
+publishedAt: 2026-11-18T01:23:00+09:00
 project: "acp-harbor"
 kind: "decision"
 tags: ["게임개발", "의사결정"]
