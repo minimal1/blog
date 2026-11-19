@@ -37,11 +37,13 @@ CHROME_PATH='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' pnpm 
 
 ## PR에서 확인하기
 
-`Mobile performance report` 워크플로는 사이트·콘텐츠·측정 설정에 영향을 주는 PR과 수동 실행에서 동작한다. 같은 `pnpm performance`로 빌드와 측정을 마친 뒤 타입 검사와 테스트를 실행한다. 빌드가 Astro 컬렉션 타입과 HTML 검사 대상을 먼저 생성한다. Actions와 Node·pnpm·Chrome·LHCI 버전을 고정한다. CI Chrome은 158.0.8127.36이다.
+`Mobile performance report` 워크플로는 모든 PR과 수동 실행에서 동작한다. `lighthouse`를 필수 상태 검사로 지정할 수 있도록 파일 경로 필터를 사용하지 않는다. 문서만 바꾼 PR에서도 검사 결과가 생성되어야 미실행 상태로 병합이 막히지 않는다. 같은 `pnpm performance`로 빌드와 측정을 마친 뒤 타입 검사와 테스트를 실행한다. 빌드가 Astro 컬렉션 타입과 HTML 검사 대상을 먼저 생성한다. Actions와 Node·pnpm·Chrome·LHCI 버전을 고정한다. CI Chrome은 158.0.8127.36이다.
 
 워크플로 요약에서 중앙값을 보고, 같은 실행의 `mobile-lighthouse-*` 아티팩트에서 세부 보고서를 내려받는다. 보고서는 이 저장소의 Actions 아티팩트로 14일간 보관한다. 실패한 수집의 원시 결과도 가능한 범위에서 보관한다. 워크플로 권한은 `contents: read`이며 PR 댓글이나 배포를 생성하지 않는다.
 
 점수 제한은 기준값과 실행 간 변동을 확인한 뒤 별도 변경으로 정한다. 현재의 통과는 측정 절차의 성공을 뜻하며 성능 목표 달성을 뜻하지 않는다.
+
+실패 시 병합을 막는 저장소 규칙은 [필수 상태 검사 설정](./required-checks.md)에 따라 관리자가 별도로 적용한다.
 
 ## 해석의 범위
 

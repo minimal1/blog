@@ -2,17 +2,6 @@ name: Mobile performance report
 
 on:
   pull_request:
-    paths:
-      - "src/**"
-      - "public/**"
-      - "astro.config.*"
-      - "package.json"
-      - "pnpm-lock.yaml"
-      - "tsconfig.json"
-      - "scripts/performance*"
-      - "tests/**"
-      - "docs/seo-performance.md"
-      - ".github/workflows/performance.yaml"
   workflow_dispatch:
 
 permissions:
