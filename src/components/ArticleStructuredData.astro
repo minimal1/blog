@@ -1,0 +1,31 @@
+---
+import type { LogEntry, ProjectEntry } from "../lib/site";
+import { projectPath, withBase } from "../lib/site";
+import { createArticleStructuredData, serializeJsonLd } from "../lib/structured-data";
+
+interface Props {
+  log: LogEntry;
+  project: ProjectEntry;
+}
+
+const { log, project } = Astro.props;
+
+if (!Astro.site) {
+  throw new Error("구조화 데이터를 생성하려면 Astro의 site 설정이 필요합니다.");
+}
+
+const data = createArticleStructuredData({
+  title: log.data.title,
+  description: log.data.description,
+  publishedAt: log.data.publishedAt,
+  url: new URL(Astro.url.pathname, Astro.site),
+  authorUrl: new URL(withBase("/about"), Astro.site),
+  projectsUrl: new URL(withBase("/projects"), Astro.site),
+  project: {
+    name: project.data.title,
+    url: new URL(projectPath(project), Astro.site),
+  },
+});
+---
+
+<script is:inline type="application/ld+json" set:html={serializeJsonLd(data)} />
