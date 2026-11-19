@@ -80,7 +80,7 @@ const { Content } = await render(project);
     <div class="section-heading">
       <h2 id="project-logs-heading">개발 기록</h2>
       {logs.length > 0 && (
-        <a href={logPath(logs.at(-1)!)}>
+        <a href={logPath(logs.at(0)!)}>
           처음부터 읽기
         </a>
       )}

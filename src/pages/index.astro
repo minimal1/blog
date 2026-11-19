@@ -5,12 +5,14 @@ import ProjectCard from "../components/ProjectCard.astro";
 import LogList from "../components/LogList.astro";
 import {
   publishedLogs,
+  latestLogs,
   sortProjects,
   withBase,
 } from "../lib/site";
 
 const projects = sortProjects(await getCollection("projects"));
 const logs = publishedLogs(await getCollection("logs"));
+const recentLogs = latestLogs(logs, 6);
 const logCounts = new Map(
   projects.map((project) => [
     project.id,
@@ -51,7 +53,7 @@ const logCounts = new Map(
       <h2 id="logs-heading">최근 개발 기록</h2>
       <a href={withBase("/logs")}>모든 기록 보기</a>
     </div>
-    <LogList logs={logs.slice(0, 6)} projects={projects} />
+    <LogList logs={recentLogs} projects={projects} />
   </section>
 </Layout>
 

@@ -37,8 +37,8 @@ const projectLogs = publishedLogs(
   ),
 );
 const currentIndex = projectLogs.findIndex((entry) => entry.id === log.id);
-const newerLog = currentIndex > 0 ? projectLogs[currentIndex - 1] : undefined;
-const olderLog =
+const olderLog = currentIndex > 0 ? projectLogs[currentIndex - 1] : undefined;
+const newerLog =
   currentIndex < projectLogs.length - 1 ? projectLogs[currentIndex + 1] : undefined;
 const { Content } = await render(log);
 ---
@@ -56,7 +56,7 @@ const { Content } = await render(log);
       <time datetime={log.data.publishedAt.toISOString()}>
         {formatDate(log.data.publishedAt)}
       </time>
-      <span>기록 {projectLogs.length}개 중 {projectLogs.length - currentIndex}번째</span>
+      <span>기록 {projectLogs.length}개 중 {currentIndex + 1}번째</span>
     </div>
   </header>
 
