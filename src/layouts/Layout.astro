@@ -81,8 +81,14 @@ const pageType = [
       <slot />
     </main>
     <footer class="site-footer page-shell">
-      <p>작게 만들고, 자주 공개합니다.</p>
-      <p>© {new Date().getFullYear()} Minimal</p>
+      <div class="site-footer__info">
+        <p>작게 만들고, 자주 공개합니다.</p>
+        <p>
+          모든 콘텐츠는 AI를 활용해 만듭니다.
+          <a href={withBase("/about#ai-content")}>콘텐츠 제작 안내</a>
+        </p>
+      </div>
+      <p class="site-footer__copyright">© {new Date().getFullYear()} Minimal</p>
     </footer>
   </body>
 </html>
@@ -105,6 +111,16 @@ const pageType = [
 
   .site-footer p {
     margin: 0;
+  }
+
+  .site-footer__info {
+    display: grid;
+    gap: 0.35rem;
+    word-break: keep-all;
+  }
+
+  .site-footer__copyright {
+    flex-shrink: 0;
   }
 
   @media (max-width: 520px) {
