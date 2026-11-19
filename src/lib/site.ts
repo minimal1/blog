@@ -53,19 +53,15 @@ export function sortProjects(projects: ProjectEntry[]) {
 export function sortLogs(logs: LogEntry[]) {
   return [...logs].sort(
     (a, b) => {
-      const diff = a.data.publishedAt.valueOf() - b.data.publishedAt.valueOf();
+      const diff = b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf();
       if (diff !== 0) {
         return diff;
       }
-      return a.id.localeCompare(b.id, undefined, { numeric: true });
+      return b.id.localeCompare(a.id, undefined, { numeric: true });
     },
   );
 }
 
 export function publishedLogs(logs: LogEntry[]) {
   return sortLogs(logs.filter((log) => !log.data.draft));
-}
-
-export function latestLogs(logs: LogEntry[], count: number) {
-  return sortLogs(logs).slice(-count).reverse();
 }
