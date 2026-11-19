@@ -34,7 +34,7 @@ pnpm check:content --built
 git diff --check
 ```
 
-검사 코드만 빠르게 확인하려면 `pnpm test:content`를 실행한다. `.github/workflows/content-check.yaml`은 PR과 `main` push에서 빌드, 타입 검사, 저장소의 `tests/*.test.mjs`, 빌드 후 콘텐츠 검사를 실행한다. 저장소 관리자가 필수 상태 검사로 지정해야 CI 실패가 병합을 막는다. 이 문서와 CI 파일 추가만으로 GitHub의 브랜치 규칙이 바뀌지는 않는다.
+검사 코드만 빠르게 확인하려면 `pnpm test:content`를 실행한다. `.github/workflows/content-check.yaml`은 PR과 `main` push에서 빌드, 타입 검사, 저장소의 `tests/*.test.mjs`, 빌드 후 콘텐츠 검사를 실행한다. `content`와 `lighthouse`를 [필수 상태 검사 규칙](./required-checks.md)에 따라 저장소 관리자가 지정해야 CI 실패가 병합을 막는다. 규칙 JSON을 커밋하는 것만으로 GitHub의 저장소 설정이 바뀌지는 않는다.
 
 `pnpm check:content`는 `src/content/projects/`와 `src/content/logs/`의 `.md`·`.mdx` 파일을 대상으로 다음을 검사한다.
 
