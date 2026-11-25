@@ -1,7 +1,7 @@
 ---
 title: "10만 개가 되던 맵이 1,000개에서 느려졌다"
 description: "1,000개 클릭에 2초가 걸린 제품 화면의 원인과 SpriteGPULayer로 줄인 측정 결과. 실제 Aru 탭에서 확인한 것과 아직 확인하지 못한 경계"
-publishedAt: 2026-11-25T17:50:00+09:00
+publishedAt: 2026-11-25T17:53:10+09:00
 project: "acp-harbor"
 kind: "build"
 tags: ["게임개발", "PoC"]

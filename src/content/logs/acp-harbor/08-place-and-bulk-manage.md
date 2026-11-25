@@ -1,7 +1,7 @@
 ---
 title: "DB 한 개를 놓고, 여러 개를 같이 관리했다"
 description: "위치 이동의 미리보기와 확정 분리, 정책 상태 표시, 드래그 일괄 적용과 구역 배치 규칙까지 DB를 다루는 조작을 만든 과정"
-publishedAt: 2026-11-25T17:50:00+09:00
+publishedAt: 2026-11-25T17:53:10+09:00
 project: "acp-harbor"
 kind: "build"
 tags: ["게임개발", "PoC"]

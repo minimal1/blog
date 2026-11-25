@@ -1,7 +1,7 @@
 ---
 title: "DB를 그리기 전에, 어떻게 고를지 정했다"
 description: "스타크래프트식 화면 배치를 와이어프레임으로 정하고, 입력창보다 선택과 출력을 먼저 만들기로 결정한 과정"
-publishedAt: 2026-11-25T17:50:00+09:00
+publishedAt: 2026-11-25T17:53:10+09:00
 project: "acp-harbor"
 kind: "decision"
 tags: ["게임개발", "PoC", "의사결정"]
