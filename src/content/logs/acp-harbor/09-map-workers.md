@@ -1,7 +1,7 @@
 ---
 title: "맵의 작업자에게 일을 맡겼다"
 description: "관리 센터에 작업자를 두고 자연어 지시를 Aru 채팅으로 전달한 과정. 첫 응답 읽기 실패와 실제 Aru 탭에서 확인한 결과까지"
-publishedAt: 2026-11-25T17:50:00+09:00
+publishedAt: 2026-11-25T17:53:10+09:00
 project: "acp-harbor"
 kind: "build"
 tags: ["게임개발", "PoC", "AI에이전트"]

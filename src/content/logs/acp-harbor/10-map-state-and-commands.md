@@ -1,7 +1,7 @@
 ---
 title: "맵을 닫았다 열어도 같은 자리에서 시작한다"
 description: "고정된 맵을 경계 없는 작업면으로 바꾸고 배치를 저장해 복원까지 확인한 과정. 하단 명령판 정리와 위치 우선 등록도 담았다"
-publishedAt: 2026-11-25T17:50:00+09:00
+publishedAt: 2026-11-25T17:53:10+09:00
 project: "acp-harbor"
 kind: "build"
 tags: ["게임개발", "PoC"]
