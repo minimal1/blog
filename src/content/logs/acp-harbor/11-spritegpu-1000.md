@@ -1,11 +1,11 @@
 ---
 title: "10만 개가 되던 맵이 1,000개에서 느려졌다"
 description: "1,000개 클릭에 2초가 걸린 제품 화면의 원인과 SpriteGPULayer로 줄인 측정 결과. 실제 Aru 탭에서 확인한 것과 아직 확인하지 못한 경계"
-publishedAt: 2026-11-25T18:00:00+09:00
+publishedAt: 2026-11-25T17:50:00+09:00
 project: "acp-harbor"
 kind: "build"
 tags: ["게임개발", "PoC"]
-draft: true
+draft: false
 ---
 
 DB를 같은 형태로 1,000개 놓고 실행했더니 한 개를 클릭하는 데 거의 2초가 걸렸다. [앞선 Phaser 실험](/blog/projects/acp-harbor/logs/06-aru-plugin-over-godot/)에서는 10만 개를 띄우고도 맵이 움직였다. 라이브러리는 같았지만 각 DB를 그리는 일이 달랐다. 실험은 단순한 박스를 GPU에 묶어 보냈다. 제품 화면은 DB마다 본체와 이름, 엔진, 설비 텍스트를 따로 만들었고, 선택만 바꿔도 장면의 표시를 다시 만드는 구조였다.
