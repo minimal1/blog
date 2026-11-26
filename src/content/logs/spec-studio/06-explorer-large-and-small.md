@@ -1,7 +1,7 @@
 ---
 title: "큰 프로젝트는 빨라졌는데 작은 프로젝트는 느려졌다"
 description: "Spec Studio 탐색기에 지연 조회와 가상 스크롤을 넣은 뒤, 작은 자료의 문서 열기 속도가 느려져 다시 측정하고 고친 과정."
-publishedAt: 2026-11-26T17:29:33+09:00
+publishedAt: 2026-11-26T17:42:20+09:00
 project: "spec-studio"
 kind: "build"
 tags: ["Aru", "성능"]

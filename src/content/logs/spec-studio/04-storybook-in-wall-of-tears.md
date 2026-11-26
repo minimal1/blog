@@ -1,7 +1,7 @@
 ---
 title: "Storybook을 만들어 놓고도 시안을 찾지 못했다"
 description: "통곡의 벽에 Spec Studio를 적용하니 시안이 있는 것과 검토자가 필요한 화면을 찾아 판단할 수 있는 것 사이에 차이가 있었다."
-publishedAt: 2026-11-26T17:29:33+09:00
+publishedAt: 2026-11-26T17:42:20+09:00
 project: "spec-studio"
 kind: "build"
 tags: ["Storybook", "디자인시스템"]

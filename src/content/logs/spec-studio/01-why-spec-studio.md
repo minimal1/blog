@@ -1,7 +1,7 @@
 ---
 title: "AI로 빠르게 만든 프로젝트를 오래 이어가려면"
 description: "빠르게 만든 뒤 작업 방식을 다시 정하는 일이 어려웠다. 기획서·Storybook 시안·코드·QA를 한 변경 건으로 묶기로 한 이유다."
-publishedAt: 2026-11-26T17:29:33+09:00
+publishedAt: 2026-11-26T17:42:20+09:00
 project: "spec-studio"
 kind: "decision"
 tags: ["AI에이전트", "의사결정"]

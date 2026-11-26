@@ -1,7 +1,7 @@
 ---
 title: "Storybook에 제품과 같은 UI 코드를 쓰기로 했다"
 description: "격리된 시안과 제품 화면을 따로 만들던 구조에서 출발해, 처음 만든 디자인 시스템과 공용 화면을 Storybook과 Aru 플러그인에 연결한 과정."
-publishedAt: 2026-11-26T17:29:33+09:00
+publishedAt: 2026-11-26T17:42:20+09:00
 project: "spec-studio"
 kind: "build"
 tags: ["Storybook", "디자인시스템"]
