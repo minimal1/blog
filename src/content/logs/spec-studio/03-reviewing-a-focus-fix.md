@@ -1,7 +1,7 @@
 ---
 title: "키보드 포커스 수정 하나를 되돌린 이유"
 description: "Aru 탐색기의 키보드 표시를 먼저 고친 커밋을 되돌리고, 별도 변경에서 Storybook 시안과 제품 QA를 다시 확인한 기록."
-publishedAt: 2026-11-26T17:29:33+09:00
+publishedAt: 2026-11-26T17:42:20+09:00
 project: "spec-studio"
 kind: "decision"
 tags: ["Storybook", "접근성", "의사결정"]

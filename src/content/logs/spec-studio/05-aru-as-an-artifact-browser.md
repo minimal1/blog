@@ -1,7 +1,7 @@
 ---
 title: "Aru 플러그인에서 실행 기능을 뺐다"
 description: "프로젝트 등록과 작업 채팅까지 넣던 Aru 플러그인을 읽기 전용 탐색기로 줄이고, 실행과 상태 변경을 CLI에 남긴 이유."
-publishedAt: 2026-11-26T17:29:33+09:00
+publishedAt: 2026-11-26T17:42:20+09:00
 project: "spec-studio"
 kind: "decision"
 tags: ["Aru", "의사결정"]

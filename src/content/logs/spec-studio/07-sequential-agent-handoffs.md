@@ -1,7 +1,7 @@
 ---
 title: "서브 에이전트의 ‘끝났습니다’ 다음에 확인할 것"
 description: "승인된 작업을 서브 에이전트에 하나씩 맡기고, 담당 세션과 실제 검증 결과를 확인한 뒤 다음 작업으로 넘어가도록 만든 실험."
-publishedAt: 2026-11-26T17:29:33+09:00
+publishedAt: 2026-11-26T17:42:20+09:00
 project: "spec-studio"
 kind: "build"
 tags: ["AI에이전트", "Aru"]
