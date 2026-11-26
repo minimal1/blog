@@ -1,7 +1,7 @@
 ---
 title: "멀어지면 목소리가 작아지는 사무실"
 description: "가까이에서 시작한 통화를 이동하면서도 이어 가고, Aru 채팅으로 돌아갔을 때도 음성을 듣거나 끌 수 있게 했다."
-publishedAt: 2026-11-26T23:12:58+09:00
+publishedAt: 2026-11-26T23:18:03+09:00
 project: "aroffice"
 kind: "build"
 tags: ["Aru", "PoC"]

@@ -1,7 +1,7 @@
 ---
 title: "회의실에 들어갈 때 행성이 튀었다"
 description: "사각형 사무실을 우주 지도로 바꾸면서, 행성이 다가온 방향에서 공전을 시작하고 현재 위치에서 빠져나오게 했다."
-publishedAt: 2026-11-26T23:12:58+09:00
+publishedAt: 2026-11-26T23:18:03+09:00
 project: "aroffice"
 kind: "build"
 tags: ["Aru", "게임개발"]

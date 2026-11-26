@@ -1,7 +1,7 @@
 ---
 title: "동료의 작업은 어디까지 보여줄까"
 description: "직접 고른 작업만 공유하던 방식에서 같은 팀의 실행 중인 세션 제목을 보여주는 방식으로 바꾸고, 위성에 무엇을 표시할지 정했다."
-publishedAt: 2026-11-26T23:12:58+09:00
+publishedAt: 2026-11-26T23:18:03+09:00
 project: "aroffice"
 kind: "decision"
 tags: ["Aru", "AI에이전트"]
