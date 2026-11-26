@@ -1,7 +1,7 @@
 ---
 title: "사각형으로 먼저 사무실을 만들었다"
 description: "Aroffice의 첫 사무실을 사각형으로 그리고, Aru 채팅을 열어 둔 채 다가온 동료에게 답할 수 있는지 시험했다."
-publishedAt: 2026-11-26T23:12:58+09:00
+publishedAt: 2026-11-26T23:18:03+09:00
 project: "aroffice"
 kind: "build"
 tags: ["Aru", "PoC"]
