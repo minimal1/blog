@@ -5,7 +5,7 @@ publishedAt: 2026-11-26
 project: "wailing-wall"
 kind: "build"
 tags: ["디자인시스템", "Storybook", "접근성"]
-draft: true
+draft: false
 ---
 
 ## 색의 직업을 먼저 정했다

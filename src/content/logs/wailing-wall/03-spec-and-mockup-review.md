@@ -5,7 +5,7 @@ publishedAt: 2026-11-26
 project: "wailing-wall"
 kind: "build"
 tags: ["제품기획", "Storybook"]
-draft: true
+draft: false
 ---
 
 ## 검토의 순서

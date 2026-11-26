@@ -5,7 +5,7 @@ publishedAt: 2026-11-26
 project: "wailing-wall"
 kind: "build"
 tags: ["디자인시스템", "Storybook", "품질검증"]
-draft: true
+draft: false
 ---
 
 ## 두 층으로 나눈다
